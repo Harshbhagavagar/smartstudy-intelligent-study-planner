@@ -161,8 +161,6 @@ Open **http://localhost:5173** in your browser (not port 8000 — that is the AP
 
 ## Environment Variables
 
-Copy `.env.example` to `.env` and fill in:
-
 Copy `.env.example` to `.env` if needed. For local development with SQLite, only these matter:
 
 | Variable | Default | Description |
@@ -196,7 +194,7 @@ Copy `.env.example` to `.env` if needed. For local development with SQLite, only
 | `test_priority_score_rules` | FR-05 |
 | `test_higher_effort_increases_score_when_deadline_equal` | FR-05 |
 
-**Result: 15 / 15 passing **
+**Result: 15 / 15 passing**
 
 ---
 
