@@ -5,15 +5,13 @@ function priorityTier(score) {
 }
 
 export default function TaskList({ tasks, onComplete, onDelete, onEdit, filter }) {
-  const filtered = tasks.filter((t) =>
-    filter === "all" ? true : t.status === filter
-  );
+  const filtered = tasks.filter((t) => (filter === "all" ? true : t.status === filter));
 
   if (!filtered.length) {
     return (
       <div className="empty-state">
         <div className="empty-state-icon">
-          {filter === "completed" ? "🎉" : "📝"}
+          {filter === "completed" ? "Done" : "Tasks"}
         </div>
         <p className="empty-state-title">
           {filter === "completed" ? "No completed tasks yet" : "No tasks here"}
@@ -38,7 +36,7 @@ export default function TaskList({ tasks, onComplete, onDelete, onEdit, filter }
             key={task.id}
             className={`task-card stripe-${tier} ${task.status === "completed" ? "completed" : ""}`}
           >
-            {/* Task info — flex: 1, takes all remaining width */}
+            {/* Task info - flex: 1, takes all remaining width */}
             <div className="task-info">
               <p className="task-title">{task.title}</p>
               {task.description && (
@@ -47,16 +45,16 @@ export default function TaskList({ tasks, onComplete, onDelete, onEdit, filter }
                 </p>
               )}
               <div className="task-meta">
-                <span className="badge badge-deadline">📅 {task.deadline}</span>
-                <span className="badge badge-effort">💪 Effort {task.effort}</span>
-                <span className="badge badge-complexity">🧠 Complexity {task.complexity}</span>
+                <span className="badge badge-deadline">Deadline {task.deadline}</span>
+                <span className="badge badge-effort">Effort {task.effort}</span>
+                <span className="badge badge-complexity">Complexity {task.complexity}</span>
                 <span className={`badge badge-status-${task.status}`}>
-                  {task.status === "completed" ? "✅ Done" : "⏳ Pending"}
+                  {task.status === "completed" ? "Done" : "Pending"}
                 </span>
               </div>
             </div>
 
-            {/* Priority score bubble — fixed 64×64 */}
+            {/* Priority score bubble - fixed 64x64 */}
             <div className={`priority-score score-${tier}`}>
               <span>{score}</span>
               <span className="score-label">Priority</span>
@@ -66,14 +64,14 @@ export default function TaskList({ tasks, onComplete, onDelete, onEdit, filter }
             <div className="task-actions">
               {task.status === "pending" && (
                 <button className="btn btn-success btn-sm" onClick={() => onComplete(task)}>
-                  ✓ Done
+                  Done
                 </button>
               )}
               <button className="btn btn-ghost btn-sm" onClick={() => onEdit(task)}>
-                ✏️ Edit
+                Edit
               </button>
               <button className="btn btn-danger btn-sm" onClick={() => onDelete(task)}>
-                🗑 Del
+                Delete
               </button>
             </div>
           </div>

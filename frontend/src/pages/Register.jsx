@@ -13,14 +13,24 @@ export default function Register() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setError(""); setSuccess("");
-    if (!username || !email || !password) { setError("All fields are required."); return; }
-    if (!email.includes("@")) { setError("Please enter a valid email."); return; }
-    if (password.length < 8) { setError("Password must be at least 8 characters."); return; }
+    setError("");
+    setSuccess("");
+    if (!username || !email || !password) {
+      setError("All fields are required.");
+      return;
+    }
+    if (!email.includes("@")) {
+      setError("Please enter a valid email.");
+      return;
+    }
+    if (password.length < 8) {
+      setError("Password must be at least 8 characters.");
+      return;
+    }
     setLoading(true);
     try {
       await client.post("auth/register/", { username, email, password });
-      setSuccess("Account created! Redirecting to login…");
+      setSuccess("Account created! Redirecting to login...");
       setTimeout(() => navigate("/login"), 1200);
     } catch {
       setError("Registration failed. Username or email may already be taken.");
@@ -33,12 +43,12 @@ export default function Register() {
     <div className="auth-page">
       <div className="card auth-card">
         <div className="auth-logo">
-          <div className="auth-logo-icon">📚</div>
+          <div className="auth-logo-icon" aria-hidden="true" />
           <span className="auth-logo-text">SmartStudy</span>
         </div>
 
         <h1 className="auth-title">Create account</h1>
-        <p className="auth-subtitle">Start organising your study tasks today</p>
+        <p className="auth-subtitle">Start organizing your study tasks today</p>
 
         <form onSubmit={handleSubmit}>
           <div className="form-group">
@@ -76,8 +86,8 @@ export default function Register() {
             />
           </div>
 
-          {error && <div className="alert alert-error">⚠️ {error}</div>}
-          {success && <div className="alert alert-success">✅ {success}</div>}
+          {error && <div className="alert alert-error">{error}</div>}
+          {success && <div className="alert alert-success">{success}</div>}
 
           <button
             type="submit"
@@ -85,7 +95,7 @@ export default function Register() {
             style={{ marginTop: "1.5rem" }}
             disabled={loading}
           >
-            {loading ? "Creating account…" : "🚀 Register"}
+            {loading ? "Creating account..." : "Register"}
           </button>
         </form>
 

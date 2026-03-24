@@ -4,8 +4,8 @@ import client from "../api/client";
 import { useAuth } from "../context/AuthContext";
 
 export default function Login() {
-  const [username, setUsername] = useState("");
-  const [password, setPassword] = useState("");
+  const [username, setUsername] = useState("User10");
+  const [password, setPassword] = useState("User@1010");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
   const navigate = useNavigate();
@@ -14,7 +14,10 @@ export default function Login() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError("");
-    if (!username || !password) { setError("Username and password are required."); return; }
+    if (!username || !password) {
+      setError("Username and password are required.");
+      return;
+    }
     setLoading(true);
     try {
       const resp = await client.post("auth/token/", { username, password });
@@ -31,7 +34,7 @@ export default function Login() {
     <div className="auth-page">
       <div className="card auth-card">
         <div className="auth-logo">
-          <div className="auth-logo-icon">📚</div>
+          <div className="auth-logo-icon" aria-hidden="true" />
           <span className="auth-logo-text">SmartStudy</span>
         </div>
 
@@ -62,9 +65,7 @@ export default function Login() {
             />
           </div>
 
-          {error && (
-            <div className="alert alert-error">⚠️ {error}</div>
-          )}
+          {error && <div className="alert alert-error">{error}</div>}
 
           <button
             type="submit"
@@ -72,7 +73,7 @@ export default function Login() {
             style={{ marginTop: "1.5rem" }}
             disabled={loading}
           >
-            {loading ? "Logging in…" : "🔐 Login"}
+            {loading ? "Logging in..." : "Login"}
           </button>
         </form>
 
